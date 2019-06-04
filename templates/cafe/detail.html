@@ -1,0 +1,14 @@
+{% extends 'common/main.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h1 class="header">Detail of eatery</h1>
+            <p>Name of eatery : <strong>{{ eatery.name }}</strong></p>
+            <p>Address of eatery : <strong>{{ eatery.address }}</strong></p>
+            <p>Phone number of eatery : <strong>{{ eatery.phone_number }}</strong></p>
+            <p>Type of eatery : <strong>{{ eatery.eatery_type }}</strong></p>
+        </div>
+    </div>
+{% endblock %}

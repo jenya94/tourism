@@ -1,0 +1,26 @@
+{% extends 'dashboard/index.html' %}
+{% load static %}
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>User Profile</h4></div>
+        <div class="panel-body">
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+                <img alt="User Pic" src="{% static 'site/images/nobody.jpg' %}" id="profile-image1" class="img-circle img-responsive">
+            </div>
+            <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8" >
+                <div>
+                    <span >{{ user.first_name }} {{ user.last_name }}</span>
+                    <div>an   <b> Employee</b></div>
+                </div>
+                <hr/>
+                <div class="details">
+                    <div><span class="glyphicon glyphicon-user one" style="width:50px;"></span>{{ user.username }}</div>
+                    <div><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{ user.email }}</div>
+                </div>
+                <hr/>
+                <div class="tital">Date Of Joining: <strong>{{ user.date_joined }}</strong></div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

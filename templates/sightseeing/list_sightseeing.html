@@ -1,0 +1,37 @@
+{% extends 'common/main.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="container">
+        <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Place</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                        <th class="text-center">Owner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sightseeing in sightseeings %}
+                    <tr>
+                        <td class="col-sm-1 col-md-1">
+                          <img src="{{ sightseeing.photo.url }}" width="275">
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                          <h4>{{ sightseeing.place }}</h4>
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                            {{ sightseeing.date }}
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                            {{ sightseeing.price }} {{ sightseeing.currency.code }}
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{ sightseeing.owner }}, {{ sightseeing.owner.email }}</strong></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+{% endblock %}

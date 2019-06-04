@@ -1,0 +1,52 @@
+{% extends 'common/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="row">
+          <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Hotel Name</th>
+                        <th>Address</th>
+                        <th>Price</th>
+                        <th class="text-center">Phone number</th>
+                        <th class="text-center">Email</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hotel in hotels %}
+                    <tr>
+                        <td class="col-sm-1 col-md-1">
+                          <img src="{{ hotel.photo.url }}" width="275">
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                          <h4>{{ hotel.name }}</h4>
+                          <a href="/hotel/{{ hotel.id }}/rooms/" class="btn btn-default">View rooms <span class="glyphicon glyphicon-arrow-right"></span></a>
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                            {{ hotel.address }}
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                            {{ hotel.price }} {{ hotel.currency.iso_4217_code }}
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{ hotel.phone_number }}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{ hotel.email }}</strong></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          </div>
+
+        <hr>
+
+        <footer>
+        <p>&copy; 2016 Company, Inc.</p>
+      </footer>
+
+    </div><!--/.container-->
+{% endblock %}

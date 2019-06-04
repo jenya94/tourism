@@ -1,0 +1,22 @@
+{% extends 'common/main.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <h1>Rooms of {{ hotel.name }}</h1>
+
+      {% for room in rooms %}
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail">
+            <img src="{{ room.image.url }}" alt="...">
+            <h3>{{ room.name }}</h3>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+      <a href="/hotel/list/" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span> Back to hotel list</a>
+    </div>
+  </div>
+{% endblock %}

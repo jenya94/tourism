@@ -1,0 +1,33 @@
+{% extends 'dashboard/index.html' %}
+
+{% load static %}
+{% block content %}
+      <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Place</th>
+                        <th>Date</th>
+                        <th class="text-center">Owner</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sightseeing in sightseeings %}
+                    <tr>
+                        <td class="col-sm-1 col-md-1">
+                          <h4><a href="#">{{ sightseeing.place }}</a></h4>
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                            {{ sightseeing.date }}
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{ sightseeing.owner }}</strong></td>
+                        <td class="col-sm-1 col-md-1">
+                          <a href="/dashboard/sightseeing/edit/{{ hotel.id }}/" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-edit"></span> Edit
+                          </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+{% endblock %}

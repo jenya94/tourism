@@ -1,0 +1,22 @@
+{% extends 'common/main.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <a href="/hotels/list/">
+            <img src="{% static 'site/images/hotel.jpg' %}" width="500"/>
+        </a>
+    </div>
+    <br/>
+    <div class="row">
+        <a href="/eatary/list/">
+            <img src="{% static 'site/images/eatary.jpg' %}" width="500"/>
+        </a>
+    </div>
+    <br/>
+    <div class="row">
+        <a href="/sightseeing/list/">
+            <img src="{% static 'site/images/sightseeing.jpg' %}" width="500"/>
+        </a>
+    </div>
+{% endblock %}
