@@ -2,21 +2,152 @@
 {% load static %}
 
 {% block content %}
+  <link rel="stylesheet" href="{% static 'site/css/jquery.lightbox.css' %}">
+
   <div class="container">
     <div class="row">
-      <h1>Rooms of {{ hotel.name }}</h1>
 
-      {% for room in rooms %}
-        <div class="col-xs-6 col-md-4">
-          <a href="#" class="thumbnail">
-            <img src="{{ room.image.url }}" alt="...">
-            <h3>{{ room.name }}</h3>
-          </a>
+      <hr>
+      <div class="col-lg-6">
+        {% for room in rooms %}
+          <ul class="gallery"  style="list-style-type: none;">
+            {% if forloop.first %}
+              <p style="background-color: red;">
+                <li>
+                  <a href="{{ hotel.image.url }}" data-caption="Hotel">
+                    <img src="{{ hotel.image.url }}" class="img-responsive" style="min-width: 100%;">
+                  </a>
+                </li>
+              </p>
+
+            {% endif %}
+            <div class="col-md-3">
+              <li>
+                <span>{{ room.name }}<span>
+                <a href="{{ room.image.url }}" data-caption="{{ room.name }}">
+                  <img src="{{ room.image.url }}" class="img-responsive">
+                </a>
+              </li>
+            </div>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <h1 class="head">Information about Hotel</h1>
+        <div class="col-md-6">Hotel Name</div>
+        <div class="col-md-6">{{ hotel.name }}</div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-6">Address</div>
+        <div class="col-md-6">{{ hotel.address }}</div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-6">Price</div>
+        <div class="col-md-6">{{ hotel.price }} {{ hotel.currency }}</div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-6">Phone Number</div>
+        <div class="col-md-6">{{ hotel.phone_number }}</div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-6">Email</div>
+        <div class="col-md-6">{{ hotel.email }}</div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-6">Available rooms</div>
+        <div class="col-md-6"><strong>{{ registrationbook.available_rooms }}</strong></div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-6">Services</div>
+        <div class="col-md-6">{{ hotel.services }}</div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-6"></div>
+        <div class="col-md-6"></div>
+        <div class="clearfix"></div>
+        <br>
+        <div class="col-md-12">
+          <button class="btn btn-success" data-toggle="modal" data-target="#booking_modal">
+            Book Now!
+          </button>
         </div>
-      {% endfor %}
+        {% if messages %}
+          {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+              <div class="clearfix"></div>
+              <p class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Well done!</strong> {{ message }}
+              </p>
+
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+      </div>
+
     </div>
+    <br>
     <div class="row">
-      <a href="/hotel/list/" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span> Back to hotel list</a>
+      <a href="{% url 'hotels:list' %}" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span> Back to hotel list</a>
+      <hr>
+    </div>
+
+  </div>
+  <!-- Model dialog -->
+  <div class="modal fade" id="booking_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Booking form</h4>
+        </div>
+        <div class="modal-body">
+
+          <form method="post" action="{% url 'hotels:booking' %}" class="form-horizontal" id="booking_form">
+            {% csrf_token %}
+            <input type="hidden" value="{{ hotel.id }}" name="hotel_id">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="name" class="col-md-2 text-left">Name</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control col-md-9" name="name" id="name" placeholder="name e.g. John Smith">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                <label for="ordered_date" class="control-label">From</label>
+                  <input type="date" class="form-control" name="ordered_date" id="ordered_date" placeholder="name e.g. John Smith">
+              </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                <label for="expired_date" class="control-label">To</label>
+
+                  <input type="date" class="form-control" name="expired_date" id="expired_date" placeholder="name e.g. John Smith">
+
+              </div>
+              </div>
+
+            </div>
+
+
+          </form>
+        <div class="clearfix"></div>
+        </div>
+        <div class="modal-footer">
+          <input  type="reset" class="btn btn-default" form="booking_form" value="Reset">
+          <input  type="submit" class="btn btn-primary" form="booking_form" value="Send">
+        </div>
+      </div>
     </div>
   </div>
+  <script src="{% static 'site/js/jquery.lightbox.min.js' %}"></script>
+
+  <script>
+    $(function() {
+      $('.gallery a').lightbox();
+    });
+  </script>
 {% endblock %}

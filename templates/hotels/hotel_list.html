@@ -22,11 +22,11 @@
                     {% for hotel in hotels %}
                     <tr>
                         <td class="col-sm-1 col-md-1">
-                          <img src="{{ hotel.photo.url }}" width="275">
+                          <img src="{{ hotel.image.url }}" width="275">
                         </td>
                         <td class="col-sm-1 col-md-1">
                           <h4>{{ hotel.name }}</h4>
-                          <a href="/hotel/{{ hotel.id }}/rooms/" class="btn btn-default">View rooms <span class="glyphicon glyphicon-arrow-right"></span></a>
+                          <a href="{% url 'hotels:hotel' hotel.id %}" class="btn btn-default">View rooms <span class="glyphicon glyphicon-arrow-right"></span></a>
                         </td>
                         <td class="col-sm-1 col-md-1">
                             {{ hotel.address }}
