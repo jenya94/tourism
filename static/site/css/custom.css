@@ -1,0 +1,26 @@
+.f {
+	background-color: #F0F0F0;
+}
+
+
+.brief-intro {
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.brief-intro-title {
+	text-align: center;
+	font-style: bold;
+	font-stretch: ultra-expanded;
+}
+
+.brief-intro-body {
+	font-size: 16px;
+	font-family: Helvetica;
+	font-weight: 600;
+	line-height: 1.5;
+	text-indent: 25px;
+    text-align: justify;
+
+}
+
