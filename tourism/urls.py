@@ -17,15 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home_page
+from .views import home_page, logout_user, login_user
+from django.contrib.auth.models import User
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page),
+    path('auth/', include('accounts.urls')),
     path('dashboard/', include('dashboard.urls')),
-    path('hotel/', include('hotels.urls')),
+    path('hotels/', include(('hotels.urls', 'hotels'))),
     path('sightseeing/', include('sightseeing.urls')),
     path('eatery/', include('cafe.urls')),
+    path('accounts/', include('allauth.urls')),
 
 ]
 
