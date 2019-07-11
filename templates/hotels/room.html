@@ -132,7 +132,6 @@
 
             </div>
 
-
           </form>
         <div class="clearfix"></div>
         </div>
@@ -143,6 +142,15 @@
       </div>
     </div>
   </div>
+  <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="{{ pk_key }}"
+      data-amount="{{ hotel.price }}"
+      data-name="Explore Karakalpakstan"
+      data-description="Widget"
+      data-locale="auto">
+  </script>
+
   <script src="{% static 'site/js/jquery.lightbox.min.js' %}"></script>
 
   <script>
