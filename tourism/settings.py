@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.telegram',
+	'stripe',
 ]
 
 
@@ -234,3 +235,7 @@ CORS_ALLOW_METHODS = (
     'POST',
     'PUT',
 )
+
+
+STRIPE_SECRET_KEY = "sk_test_HkWjZwzvRDazwu7lQCLiaiY400zl0ypJDN"
+STRIPE_PUBLISHABLE_KEY = "pk_test_36hj0L7A7ZyNlp3o9oHy5z1900a09LbZq6"

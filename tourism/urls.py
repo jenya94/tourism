@@ -31,6 +31,7 @@ urlpatterns = [
     path('eatery/', include('cafe.urls')),
     path('accounts/', include('allauth.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('payments/', include('payments.urls')),
 ]
 
 if settings.DEBUG:

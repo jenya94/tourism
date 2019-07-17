@@ -71,14 +71,17 @@
           <button class="btn btn-success" data-toggle="modal" data-target="#booking_modal">
             Book Now!
           </button>
+
+
         </div>
         {% if messages %}
           {% for message in messages %}
             {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
               <div class="clearfix"></div>
               <p class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
                 <strong>Well done!</strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">Later</button>
               </p>
 
             {% endif %}
@@ -129,9 +132,16 @@
 
               </div>
               </div>
+              <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="{{ pb_key }}"
+              data-amount="500"
+              data-name="Demo Site"
+              data-description="Widget"
+              data-locale="auto">
+          </script>
 
             </div>
-
           </form>
         <div class="clearfix"></div>
         </div>
@@ -142,20 +152,15 @@
       </div>
     </div>
   </div>
-  <script
-      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-      data-key="{{ pk_key }}"
-      data-amount="{{ hotel.price }}"
-      data-name="Explore Karakalpakstan"
-      data-description="Widget"
-      data-locale="auto">
-  </script>
 
   <script src="{% static 'site/js/jquery.lightbox.min.js' %}"></script>
 
+
   <script>
+    Stripe.setPublishableKey("{{ pb_key }}");
     $(function() {
       $('.gallery a').lightbox();
     });
+    Stripe.
   </script>
 {% endblock %}
